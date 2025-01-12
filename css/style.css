@@ -156,6 +156,7 @@ header h1 {
 
 .input-section, .search-section {
     display: flex;
+    /* flex-direction: column; */
     padding: 1rem;
     gap: 0.5rem;
     border-bottom: 1px solid #ddd;
@@ -188,6 +189,12 @@ header h1 {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+.message {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #ff7171;
 }
 
 #todo-list li {

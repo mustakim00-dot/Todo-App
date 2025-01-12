@@ -47,14 +47,16 @@
             <h1>Todo App</h1>
         </header>
         <main>
+            <div class="search-section">
+                <input type="text" class="search-input" id="search-input" placeholder="Search tasks...">
+            </div >
             <div class="input-section">
+                
                 <input type="text" class="task-input" id ="todo-input" placeholder="Add a new task...">
 
                 <button class="add-btn" id="add-btn">Add</button>
             </div>
-            <div class="search-section">
-                <input type="text" class="search-input" id="search-input" placeholder="Search tasks...">
-            </div>
+            <p class="message"></p>
             <ul id="todo-list" class="task-list">
                 <!-- <li class="task">
                     <span>Learn HTML & CSS</span>
@@ -84,6 +86,7 @@
                     </div>
                 </li> -->
             </ul>
+            
         </main>
         <!-- <footer>
             <p>&copy; 2025 Todo App</p>
