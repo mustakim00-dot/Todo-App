@@ -171,7 +171,7 @@ header h1 {
 }
 
 .input-section button {
-    background: #4CAF50;
+    background: #00eeff;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -182,8 +182,23 @@ header h1 {
 }
 
 .input-section button:hover {
-    background: #45a049;
+    background: #458e91;
 }
+
+/* .input-section .update-btn {
+    background: #01ff09;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.input-section .update-btn:hover {
+    background: #029613;
+} */
 
 #todo-list {
     list-style: none;
