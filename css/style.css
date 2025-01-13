@@ -224,8 +224,17 @@ header h1 {
     background: #f9f9f9;
 }
 
-#todo-list span {
+#todo-list .task-name {
     flex: 1;
+    font-size: 1rem;
+    color: #1f2937;
+}
+ .task-name.Completed {
+    text-decoration: line-through 02px;
+    list-style: none;
+
+    color: #1f2937;
+    /* background-color: #4CAF50; */
 }
 
 #todo-list button {

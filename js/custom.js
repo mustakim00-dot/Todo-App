@@ -21,8 +21,7 @@ const addEventListeners = () => {
     //inputElm.addEventListener('keypress',addInput);
    searchElm.addEventListener('input',searchTask);
  }
- const inputChanges = () => {
-    messageElm.textContent = '';
+ const inputChanges = () => {   
  }
 
 const addTask = () => {
@@ -49,11 +48,11 @@ const addTask = () => {
 const renderTasks = (filteredTasks) => {
     tasks = filteredTasks || tasks;
     taskListElm.innerHTML = '';
-    tasks.map((task) => {
+    tasks.map((task,index) => {
         const taskElm = document.createElement('li');
         taskElm.classList.add('task');
         taskElm.innerHTML = `
-        <span class="Well ${task.Completed ? 'Completed' : '' }" > ${task.task} </span>
+        <span class="task-name ${task.Completed ? 'Completed' : '' }" >${index + 1} ${task.task} </span>
         <button class="edit-btn" onclick="editTask(${task.id})" >Edit</button>
                         
         <button class="delete-btn" onclick="deleteTask(${task.id})" >Delete</button>
