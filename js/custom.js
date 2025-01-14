@@ -7,7 +7,7 @@ const deleteBtnElm = document.querySelector('.delete-btn');
 const CompleteBtnElm = document.querySelector('.Complete-btn');
 const undoBtnElm = document.querySelector('.undo-btn');
 const messageElm = document.querySelector('.message');
-//const updateBtnElm = document.querySelector('.update-btn');
+const updateBtnElm = document.querySelector('.update-btn');
 
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -15,9 +15,9 @@ let editId = null;
 //messageElm.textContent = tasks.length || 'no tasks available';
 
 const addEventListeners = () => {
-    addBtnElm.addEventListener('click',addTask);
+    // addBtnElm.addEventListener('click',addTask);
     inputElm.addEventListener('input', inputChanges);
-    //updateBtnElm.addEventListener('click', updateTask);
+    updateBtnElm.addEventListener('click', updateTask);
     //inputElm.addEventListener('keypress',addInput);
    searchElm.addEventListener('input',searchTask);
  }
@@ -97,7 +97,7 @@ const completeTask = (id) => {
 const undoTask = (id) => {
     const index = tasks.findIndex((task) => task.id === id);
     tasks[index].Completed = false;
-    editId = index ;
+    // editId = index ;
     //console.log(tasks);
     // tasks = tasks.map((task) => {
     //     if (task.id === id){
@@ -111,20 +111,21 @@ const undoTask = (id) => {
  const editTask = (id) => {
     const index = tasks.findIndex((task) => task.id === id);
     inputElm.value = tasks[index].task;
+    editId = index ;
     renderTasks();
  }
 
 
-//  const updateTask = () => {
-//     if( inputElm.value === '') {
-//         messageElm.textContent = 'Please enter a task' ;
-//         return;
-//     }
-//     tasks[editId].task = inputElm.value;
-//     localStorage.setItem('tasks', JSON.stringify(tasks));
-//     inputElm.value = '';
-//     renderTasks();
-//  }
+ const updateTask = () => {
+    if( inputElm.value === '') {
+        messageElm.textContent = 'Please enter a task' ;
+        return;
+    }
+    tasks[editId].task = inputElm.value;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    inputElm.value = ' ';
+    renderTasks();
+ }
 
 
 const searchTask = () => {
