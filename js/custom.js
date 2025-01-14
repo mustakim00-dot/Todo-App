@@ -7,7 +7,7 @@ const deleteBtnElm = document.querySelector('.delete-btn');
 const CompleteBtnElm = document.querySelector('.Complete-btn');
 const undoBtnElm = document.querySelector('.undo-btn');
 const messageElm = document.querySelector('.message');
-const updateBtnElm = document.querySelector('.update-btn');
+// const updateBtnElm = document.querySelector('.update-btn');
 
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -15,9 +15,9 @@ let editId = null;
 //messageElm.textContent = tasks.length || 'no tasks available';
 
 const addEventListeners = () => {
-    // addBtnElm.addEventListener('click',addTask);
+    addBtnElm.addEventListener('click',addTask);
     inputElm.addEventListener('input', inputChanges);
-    updateBtnElm.addEventListener('click', updateTask);
+    // updateBtnElm.addEventListener('click', updateTask);
     //inputElm.addEventListener('keypress',addInput);
    searchElm.addEventListener('input',searchTask);
  }
@@ -25,7 +25,7 @@ const addEventListeners = () => {
  }
 
 const addTask = () => {
-    const task = inputElm.value
+    const task = inputElm.value;
     const id = tasks.length + 1;
     if (task === ''){
         messageElm.textContent = 'Please Enter a task';
@@ -34,6 +34,7 @@ const addTask = () => {
     }
     if (editId || editId === 0){
         tasks[editId].task = inputElm.value;
+        editId = null;
     }else {
         tasks.push({ id,task,Completed: false});
     }
@@ -64,13 +65,15 @@ const renderTasks = (filteredTasks) => {
 
         taskListElm.appendChild(taskElm);
     })
-    // if (editId || editId === 0){
-    //     addBtnElm.style.display = 'none';
-    //     updateBtnElm.style.display = 'block';
-    // }else {
-    //     addBtnElm.style.display = 'block';
-    //     updateBtnElm.style.display = 'none';
-    // }
+    if (editId || editId === 0){
+        addBtnElm.textContent = 'Update';
+        editId = null;
+        // updateBtnElm.style.display = 'block';
+    }else {
+        addBtnElm.textContent = 'Add';
+       // editId = index;
+        // updateBtnElm.style.display = 'none';
+    }
     messageElm.textContent = tasks.length === 0 ? 'no tasks available' : "" ;
  }
 
@@ -116,16 +119,16 @@ const undoTask = (id) => {
  }
 
 
- const updateTask = () => {
-    if( inputElm.value === '') {
-        messageElm.textContent = 'Please enter a task' ;
-        return;
-    }
-    tasks[editId].task = inputElm.value;
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    inputElm.value = ' ';
-    renderTasks();
- }
+//  const updateTask = () => {
+//     if( inputElm.value === '') {
+//         messageElm.textContent = 'Please enter a task' ;
+//         return;
+//     }
+//     tasks[editId].task = inputElm.value;
+//     localStorage.setItem('tasks', JSON.stringify(tasks));
+//     inputElm.value = ' ';
+//     renderTasks();
+//  }
 
 
 const searchTask = () => {

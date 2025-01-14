@@ -189,7 +189,7 @@ header h1 {
     background: #458e91;
 }
 
-.input-section .update-btn {
+/* .input-section .update-btn {
     background: #01ff09;
     color: white;
     border: none;
@@ -206,7 +206,7 @@ header h1 {
 
 .input-section .update-btn:hover {
     background: #029613;
-}
+} */
 
 #todo-list {
     list-style: none;
