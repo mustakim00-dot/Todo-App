@@ -133,9 +133,9 @@ const undoTask = (id) => {
 
 const searchTask = () => {
     const search = searchElm.value.toLowerCase();
-    const filteredTasks = tasks.filter((task) => task.task.toLowerCase().includes(search));
+    let filteredTasks = tasks.filter((task) => task.task.toLowerCase().includes(search));
     if (search === '') {
-        filteredTasks = tasks;
+        filteredTasks = null;
     }
     renderTasks(filteredTasks);
 }
