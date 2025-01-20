@@ -16,23 +16,31 @@ let editId = null;
 
 const addEventListeners = () => {
     addBtnElm.addEventListener('click',addTask);
-    inputElm.addEventListener('input', inputChanges);
+    inputElm.addEventListener('keydown', inputChanges);
     // updateBtnElm.addEventListener('click', updateTask);
     //inputElm.addEventListener('keypress',addInput);
    searchElm.addEventListener('input',searchTask);
  }
- const inputChanges = () => {   
+
+ const inputChanges = (e) => {
+    if (e.key === 'Enter'){
+        addTask();
+    }
+    //console.log(e.key);
+    
+    messageElm.textContent = '';
  }
 
 const addTask = () => {
     const task = inputElm.value;
-    const id = tasks.length + 1;
+    //const id = tasks.length + 1;
+    const id = Date.now();
+    //const id = Crypto.randomUUID();
     if (task === ''){
         messageElm.textContent = 'Please Enter a task';
         //alert('Please enter a task')
         return;
-    }
-    if (editId || editId === 0){
+    }else if (editId || editId === 0){
         tasks[editId].task = inputElm.value;
         editId = null;
     }else {
@@ -47,9 +55,9 @@ const addTask = () => {
  }
 
 const renderTasks = (filteredTasks) => {
-    tasks = filteredTasks || tasks;
+    let finalTasks = filteredTasks || tasks;
     taskListElm.innerHTML = '';
-    tasks.map((task,index) => {
+    finalTasks.map((task,index) => {
         const taskElm = document.createElement('li');
         taskElm.classList.add('task');
         taskElm.innerHTML = `
@@ -67,7 +75,7 @@ const renderTasks = (filteredTasks) => {
     })
     if (editId || editId === 0){
         addBtnElm.textContent = 'Update';
-        editId = null;
+        // editId = null;
         // updateBtnElm.style.display = 'block';
     }else {
         addBtnElm.textContent = 'Add';
@@ -86,8 +94,9 @@ const deleteTask = (id) => {
 
 const completeTask = (id) => {
     const index = tasks.findIndex((task) => task.id === id);
+    console.log(index);
     tasks[index].Completed = true;
-    //console.log(tasks);
+    
     // tasks = tasks.map((task) => {
     //     if (task.id === id){
     //         task.Completed = true ;
@@ -99,6 +108,8 @@ const completeTask = (id) => {
 }
 const undoTask = (id) => {
     const index = tasks.findIndex((task) => task.id === id);
+    console.log(index);
+    
     tasks[index].Completed = false;
     // editId = index ;
     //console.log(tasks);
@@ -135,9 +146,14 @@ const searchTask = () => {
     const search = searchElm.value.toLowerCase();
     let filteredTasks = tasks.filter((task) => task.task.toLowerCase().includes(search));
     if (search === '') {
-        filteredTasks = null;
+        //renderTasks(null);
+        renderTasks(JSON.parse(localStorage.getItem('tasks')));
+    //    filteredTasks = JSON.parse(localStorage.getItem('tasks'));
+    }else {
+        renderTasks(filteredTasks);
     }
-    renderTasks(filteredTasks);
+    console.log(JSON.parse(localStorage.getItem('tasks')));
+    
 }
  
 
