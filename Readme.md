@@ -77,5 +77,5 @@ Table
 |mfff|lfffffff|ghhh|
 |rvngff|yxvbnn|dfgghg|
 
--[_x]
+-.[_x].
 
